@@ -1,0 +1,40 @@
+body{
+    margin: 0px;
+}
+#foto_profile{
+    margin-left: -100px;
+}
+
+.content-article{
+    background: rgb(2,0,36);
+    background: radial-gradient(circle, rgba(2,0,36,1) 0%, rgba(250,250,254,0.060644240606398836) 0%, rgba(0,63,255,1) 100%); 
+}
+
+h4{
+    color: whitesmoke;
+}
+
+.junior{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    opacity: 0.7;
+}
+.nama{
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+.qr{
+    margin-right: -60px;
+    margin-top: 10px;
+}
+
+.form_msg{
+    padding-left: 120px;
+}
+
+
+footer{
+    line-height: 3;
+}
+
+.footer{
+    background-color: rgb(5, 51, 202);
+}
