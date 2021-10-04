@@ -1,51 +1,81 @@
-class Tables {
+class Table {
     constructor(init) {
-    this.init = init;
+      this.init = init;
+    }
+  
+    createHeaderName(data) {
+      let open = "<div class='card-header'>";
+      let close = "</div>";
+      data.forEach(() => {
+        open += data.shift();
+        
+      });
+     
+      return open + close;
     }
 
-    createHeaderTables(data) {
-    let open = "<thead><tr>";
-    let close = "</tr></thead>";
-    data.forEach((d) => {
-        open += `<th>${d}</th>`;
-    });
-
-    return open + close;
-    }
-
-    createBodyTables(data) {
-    let open = "<tbody>";
-    let close = "</tbody>";
-
-    data.forEach((d) => {
+    createHeaderEmail(data) {
+        let open = "<div class='card-header'>";
+        let close = "</div>";
+        data.forEach(() => {
+          open += data.pop();
+          
+        });
+       
+        return open + close;
+      }
+  
+    createBody(data) {
+      let open = "<div ='card-body'>";
+      let close = "</div>";
+  
+      for(let i=0; i < data.length; i++) {
         open += `
-        <tr>
-            <td>${d[0]}</td>
-            <td>${d[1]}</td>
-        </tr>
+          <div class = 'card-text px-3'>
+            ${data[i].shift()}
+          </div>
         `;
-    });
-
-    return open + close;
+      };
+  
+      return open + close;
     }
 
+    createBodyEmail(data) {
+        let open = "<div ='card-body'>";
+        let close = "</div>";
+    
+        for(let i=0; i < data.length; i++) {
+          open += `
+            <div class = 'card-text px-3'>
+              ${data[i].pop()}
+            </div>
+          `;
+        };
+    
+        return open + close;
+      }
+  
     render(element) {
-    let table =
-        "<table class='table table-hover'>" +
-        this.createHeaderTables(this.init.columns) +
-        this.createBodyTables(this.init.data) +
-        "</table>";
-    element.innerHTML = table;
+      let table =
+      "<div class='card'>" +
+        this.createHeaderName(this.init.columns) +
+        this.createBody(this.init.data) +
+        "</div>"+
+        "<div class='card'>"+
+        this.createHeaderEmail(this.init.columns)+
+        this.createBodyEmail(this.init.data) +
+        "</div>";
+      element.innerHTML = table;
     }
-}
-
-    const tables = new Tables({
-        columns: ["Name", "Email"],
-        data: [
-        ["Syukron", "rofi.kron@gmail.com"],
-        ["Isrofi", "kron.rofi@gmail.com"]
-        ]
-    });
-    const app = document.getElementById("app");
-    tables.render(app);
+  }
+  
+  const table = new Table({
+    columns: ["Name", "Email"],
+    data: [
+      ["Rofi", "rofi@gmail.com"],
+      ["Kron", "kron@gmail.com"]
+    ]
+  });
+  const app = document.getElementById("app");
+  table.render(app);
   
