@@ -8,6 +8,7 @@
       rel="stylesheet"
       integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We"
       crossorigin="anonymous"/>
+    
     <title>Document</title>
 </head>
 <body>
@@ -18,7 +19,7 @@
         </nav>
         <div class="container">
             <form class="form-floating mt-4">
-                <input class="form-control mr-sm-2" type="search" onkeyup="cari()" placeholder="Search" aria-label="Search" style="background-color: #e3f2fd;">
+                <input class="form-control mr-sm-2" type="search" onkeyup="find()" id="cari" placeholder="Search" style="background-color: #e3f2fd;">
                 <label for="floatingInput">Search</label>
             </form>
         </div>
@@ -27,6 +28,42 @@
             </div>
         </div>
 
+<script>
+    function find() {
+        let found = document.getElementById("cari").value.toUpperCase();
+
+            fetch('https://newsapi.org/v2/top-headlines?'+'q='+found+'&'+ 'country=id&' + 'apiKey=c313cc9772c14da19f0a8a18c1a32063')
+            .then(res => res.json())
+            .then(res => {
+                    document.getElementById('card').innerHTML = render(res) 
+            })
+            .catch(err =>{
+                if(res == null){
+                    document.getElementById('card').innerHTML = "<p>Error</p>"
+                }
+            })
+            ;
+
+    function render(result) {
+        let card = '';
+        result.articles.map(data => {
+        card += `
+            <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+                <div class="card">
+                    <img class="card-img-top" src="${data.urlToImage}" alt="Image Title" style="height: 200px;">
+                    <div class="card-body">
+                        <h5 class="card-title">${data.title}</h5>
+                        <p class="card-text"><small class="text-muted">${data.publishedAt}</small></p>
+                        <p class="card-text">${data.description}</p>
+                        <a href="${data.url}" target="_blank" class="btn btn-primary">Read More</a>
+                    </div>
+                </div>
+            </div>`;
+        })
+        return card;
+    }
+  }
+</script>
 <script src="index.js" type="module"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
 crossorigin="anonymous"></script>
