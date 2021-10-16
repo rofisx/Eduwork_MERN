@@ -1,5 +1,5 @@
 
-fetch('https://newsapi.org/v2/top-headlines?'+'country=id&' + 'apiKey=c313cc9772c14da19f0a8a18c1a32063')
+fetch('https://newsapi.org/v2/top-headlines?'+'country=id&' + 'apiKey=cb8355b1b3b8424f811b6833abad6dc0')
   .then(res => res.json())
   .then(res => {
         document.getElementById('card').innerHTML = render(res) 
