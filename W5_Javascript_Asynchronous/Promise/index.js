@@ -3,6 +3,8 @@ fetch('https://newsapi.org/v2/top-headlines?'+'country=id&' + 'apiKey=cb8355b1b3
   .then(res => res.json())
   .then(res => {
         document.getElementById('card').innerHTML = render(res) 
+}).catch(err => {
+  document.getElementById('card').innerHTML = `<p style="background-color: #A52A2A; color:white; text-align: center;">Request Data Sudah Terlalu Banyak</p>`;
 });
 
 function render(result) {
